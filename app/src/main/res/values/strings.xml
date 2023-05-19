@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+
+    <string name="question">한국외대 총장 이름은?</string>
+    <string name="choice1">박정운</string>
+    <string name="choice2">아이유</string>
+    <string name="choice3">박명수</string>
+
+    <string name="nextButton">다음</string>
+</resources>
