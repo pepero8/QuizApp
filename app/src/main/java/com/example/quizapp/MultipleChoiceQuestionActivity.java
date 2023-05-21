@@ -79,7 +79,7 @@ public class MultipleChoiceQuestionActivity extends AppCompatActivity {
 
     public void loadNextQuestion() {
         Questions.QnA nextQnA = questions.next();
-        question.setText(nextQnA.getQuestion());
+        question.setText("Q. " + nextQnA.getQuestion());
         choiceButton1.setText(nextQnA.getChoices()[0]);
         choiceButton2.setText(nextQnA.getChoices()[1]);
         choiceButton3.setText(nextQnA.getChoices()[2]);

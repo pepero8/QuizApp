@@ -53,7 +53,7 @@ public class Questions {
      * @return QnA 객체
      */
     QnA next() {
-        if (currentQnAidx == questionList.size()) currentQnAidx = -1;
+        if (currentQnAidx == questionList.size() - 1) currentQnAidx = -1;
         currentQnAidx++;
         return questionList.get(currentQnAidx);
     }
