@@ -31,8 +31,12 @@ public class Questions {
     }
     private List<QnA> questionList;
 //    private QuestionAndAnswer curQuestion;
-    private int idx = 0;
+    private int currentQnAidx = -1;
 
+    /**
+     * 생성자
+     * @param questionListMap 문제 정보를 담고 있는 Map 객체
+     */
     Questions(Map<String, String> questionListMap) {
         questionList = new ArrayList<>(questionListMap.size());
 
@@ -43,11 +47,29 @@ public class Questions {
         }
     }
 
+    /**
+     * currentQnAidx를 하나 증가시킨 후 그 인덱스에 해당하는 다음 문제(QnA) 객체를 반환합니다.
+     * 처음 불려질 경우 첫번째 문제 객체를 반환합니다.
+     * @return QnA 객체
+     */
     QnA next() {
-        if (idx >= questionList.size()) idx = 0;
-        return questionList.get(idx++);
+        if (currentQnAidx == questionList.size()) currentQnAidx = -1;
+        currentQnAidx++;
+        return questionList.get(currentQnAidx);
     }
 
+    /**
+     * 현재 문제 객체를 반환합니다.
+     * @return QnA 객체
+     */
+    QnA current() {
+        return questionList.get(currentQnAidx);
+    }
+
+    /**
+     * 문제 총 개수를 반환합니다.
+     * @return 문제 총 개수
+     */
     int size() {
         return questionList.size();
     }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="questionTextTopMargin">200sp</dimen>
+    <dimen name="choiceButtonLeftRightMargin">20sp</dimen>
+    <dimen name="betweenChoiceButtonMargin">40sp</dimen>
+</resources>
