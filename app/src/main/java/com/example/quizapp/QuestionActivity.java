@@ -1,12 +1,17 @@
 package com.example.quizapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +25,8 @@ public class QuestionActivity extends AppCompatActivity {
     private static final String TAG = "QuestionActivity";
     private static final long TIME_MS = 20000L;
     private Questions questions;
-    private TextView multipleChoiceQuestionText, subjectiveQuestionText, subjectiveAnswerText;
+    private TextView multipleChoiceQuestionText, subjectiveQuestionText;
+    private EditText subjectiveAnswerText;
     private Button choiceButton1, choiceButton2, choiceButton3, choiceButton4;
     private Button buttonSubmit;
     private ProgressBar progressBar;
@@ -50,6 +56,31 @@ public class QuestionActivity extends AppCompatActivity {
         questionMap.put("S:현재 년도는?", "2023");
         questionMap.put("S:1+1은?", "2");
         questions = new Questions(questionMap);
+
+        subjectiveAnswerText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b) {
+                    // When EditText gains focus, clear the hint text
+                    ((EditText)view).setHint("");
+                } else {
+                    // When EditText loses focus, set the hint text
+                    ((EditText)view).setHint("답변 입력");
+                }
+            }
+        });
+        subjectiveAnswerText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (i == KeyEvent.KEYCODE_ENTER) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    view.clearFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         // 객관식 문제 layout의 선택지 버튼의 리스너
         View.OnClickListener choiceButtonListener = new View.OnClickListener() {
@@ -81,11 +112,13 @@ public class QuestionActivity extends AppCompatActivity {
                 Questions.QnA qna = questions.current();
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
-                    subjectiveAnswerText.setText("정답입니다!");
+                    Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
+//                    subjectiveAnswerText.setText("정답입니다!");
                     correctCount++;
                 }
                 else {
-                    subjectiveAnswerText.setText("오답입니다");
+                    Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
+//                    subjectiveAnswerText.setText("오답입니다");
                 }
 
                 // 다음 문제 로드
@@ -109,7 +142,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 progressBar.setProgress(0);
-                Toast.makeText(QuestionActivity.this, "End!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(QuestionActivity.this, "총 맞춘 개수: " + correctCount, Toast.LENGTH_SHORT).show();
             }
         };
         timer.start();
@@ -123,7 +156,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         subjectiveQuestionText = subjectiveQ.findViewById(R.id.textViewQuestion);
         multipleChoiceQuestionText = multipleChoiceQ.findViewById(R.id.question);
-        subjectiveAnswerText = subjectiveQ.findViewById(R.id.textViewAnswer);
+        subjectiveAnswerText = subjectiveQ.findViewById(R.id.answer);
         buttonSubmit = subjectiveQ.findViewById(R.id.buttonSubmit);
         choiceButton1 = multipleChoiceQ.findViewById(R.id.choice1);
         choiceButton2 = multipleChoiceQ.findViewById(R.id.choice2);
@@ -155,7 +188,8 @@ public class QuestionActivity extends AppCompatActivity {
             changeToSubjectiveQview();
 
             subjectiveQuestionText.setText("Q. " + nextQnA.getQuestion());
-            subjectiveAnswerText.setText("답변 입력");
+            subjectiveAnswerText.setHint("답변 입력");
+            subjectiveAnswerText.setText("");
         }
     }
 
