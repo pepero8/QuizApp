@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginTop="@dimen/questionTextTopMargin"
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/question"
+        android:textColor="@color/black"
+        android:textSize="30sp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50sp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/choice1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/choiceButtonLeftRightMargin"
+                android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
+                android:text="@string/choice1"
+                android:background="@drawable/button_rounded_corners"/>
+
+            <Button
+                android:id="@+id/choice2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
+                android:layout_marginEnd="@dimen/choiceButtonLeftRightMargin"
+                android:text="@string/choice2"
+                android:background="@drawable/button_rounded_corners"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50sp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/choice3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/choiceButtonLeftRightMargin"
+                android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
+                android:text="@string/choice3"
+                android:background="@drawable/button_rounded_corners"/>
+
+            <Button
+                android:id="@+id/choice4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
+                android:layout_marginEnd="@dimen/choiceButtonLeftRightMargin"
+                android:text="@string/choice4"
+                android:background="@drawable/button_rounded_corners"/>
+        </TableRow>
+    </TableLayout>
+
+</TableLayout>

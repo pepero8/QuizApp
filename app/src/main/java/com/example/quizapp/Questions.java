@@ -7,20 +7,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class Questions {
-    static class QnA {
-        private final String question;
-        private final String answer;
-        private final String[] choices;
-
-        QnA(String question, String answer, String[] choices) {
-            this.question = question;
-            this.answer = answer;
-            this.choices = choices;
-        }
-
+    static abstract class QnA {
+        protected String question;
+        protected String answer;
         String getQuestion() {
             return question;
         }
@@ -28,13 +19,29 @@ public class Questions {
         String getAnswer() {
             return answer;
         }
+    }
+
+    static class MultipleChoiceQnA extends QnA {
+        private final String[] choices;
+        MultipleChoiceQnA(String question, String answer, String[] choices) {
+            this.question = question;
+            this.answer = answer;
+            this.choices = choices;
+        }
 
         String[] getChoices() {
             Collections.shuffle(Arrays.asList(choices));
             return choices;
         }
     }
-    private List<QnA> questionList;
+
+    static class SubjectiveQnA extends QnA {
+        SubjectiveQnA(String question, String answer) {
+            this.question = question;
+            this.answer = answer;
+        }
+    }
+    private final List<QnA> questionList;
 //    private QuestionAndAnswer curQuestion;
     private int currentQnAidx = -1;
 
@@ -55,15 +62,23 @@ public class Questions {
         List<Integer> idxList = Arrays.asList(idxArray);
         Collections.shuffle(idxList);
 
-        Log.d("Questions", "idxList: " + idxList.toString());
+        Log.d("Questions", "idxList: " + idxList);
 
         Map.Entry<String, String>[] questionSet = new Map.Entry[questionListSize];
         questionSet = questionListMap.entrySet().toArray(questionSet);
 
         for (int nextIdx : idxList) {
-            String[] choices = questionSet[nextIdx].getValue().split(":");
-            String answer = choices[0];
-            questionList.add(new QnA(questionSet[nextIdx].getKey(), answer, choices));
+            String[] q = questionSet[nextIdx].getKey().split(":");
+            String question = q[1];
+            String value = questionSet[nextIdx].getValue();
+            if (q[0].equals("M")) {
+                String[] choices = value.split(":");
+                String answer = choices[0];
+                questionList.add(new MultipleChoiceQnA(question, answer, choices));
+            }
+            else if (q[0].equals("S")) {
+                questionList.add(new SubjectiveQnA(question, value));
+            }
         }
 
 //        for (Map.Entry<String, String> entry : questionListMap.entrySet()) {
