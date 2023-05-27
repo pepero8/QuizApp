@@ -7,15 +7,16 @@
         android:layout_marginTop="@dimen/questionTextTopMargin"
         android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_height="100sp"
+        android:gravity="center_horizontal"
         android:text="@string/question"
         android:textColor="@color/black"
         android:textSize="30sp"/>
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70sp">
 
         <TableRow
             android:layout_width="match_parent"

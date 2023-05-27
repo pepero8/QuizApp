@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class QuestionActivity extends AppCompatActivity {
     private static final String TAG = "QuestionActivity";
+    private static final long TIME_MS = 20000L;
     private Questions questions;
     private TextView multipleChoiceQuestionText, subjectiveQuestionText, subjectiveAnswerText;
     private Button choiceButton1, choiceButton2, choiceButton3, choiceButton4;
@@ -95,8 +96,9 @@ public class QuestionActivity extends AppCompatActivity {
         loadNextQuestion();
 
         // 시간 제한 설정
-        progressBar.setProgress(R.integer.time_ms);
-        CountDownTimer timer = new CountDownTimer(R.integer.time_ms, 100) {
+        progressBar.setMax((int) TIME_MS);
+        progressBar.setProgress((int) TIME_MS);
+        CountDownTimer timer = new CountDownTimer(TIME_MS, 100) {
             @Override
             public void onTick(long l) {
                 textViewTime.setText(hmsTimeFormatter(l));
