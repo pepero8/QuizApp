@@ -1,15 +1,19 @@
 package com.example.quizapp;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class MultipleChoiceQuestionActivity extends AppCompatActivity {
 
@@ -18,6 +22,8 @@ public class MultipleChoiceQuestionActivity extends AppCompatActivity {
 
     TextView question;
     Button choiceButton1, choiceButton2, choiceButton3, choiceButton4;
+    ProgressBar progressBar;
+    TextView textViewTime;
     int correctCount = 0;
 
     @Override
@@ -32,6 +38,24 @@ public class MultipleChoiceQuestionActivity extends AppCompatActivity {
         choiceButton2 = findViewById(R.id.choice2);
         choiceButton3 = findViewById(R.id.choice3);
         choiceButton4 = findViewById(R.id.choice4);
+        progressBar = findViewById(R.id.progressBar);
+        textViewTime = findViewById(R.id.textViewTime);
+
+        CountDownTimer timer = new CountDownTimer(90000, 100) {
+            @Override
+            public void onTick(long l) {
+                textViewTime.setText(hmsTimeFormatter(l));
+                int current = progressBar.getProgress() - 1;
+                progressBar.setProgress(current);
+            }
+
+            @Override
+            public void onFinish() {
+                progressBar.setProgress(0);
+                Toast.makeText(MultipleChoiceQuestionActivity.this, "End!", Toast.LENGTH_SHORT).show();
+            }
+        };
+        timer.start();
 
         // 문제 모음집 객체 생성&초기화
         HashMap<String, String> questionMap = new HashMap<>();
@@ -84,5 +108,11 @@ public class MultipleChoiceQuestionActivity extends AppCompatActivity {
         choiceButton2.setText(nextQnA.getChoices()[1]);
         choiceButton3.setText(nextQnA.getChoices()[2]);
         choiceButton4.setText(nextQnA.getChoices()[3]);
+    }
+
+    private static String hmsTimeFormatter(long l) {
+        return String.format("%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(l) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(l)),
+                TimeUnit.MILLISECONDS.toSeconds(l) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(l)));
     }
 }

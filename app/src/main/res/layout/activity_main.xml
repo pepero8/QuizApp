@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/timer_margin_top"
+        android:gravity="center"
+        android:text="00:10"
+        android:textColor="@color/black"
+        android:textSize="40sp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/progress_bar_margin_side"
+        android:layout_marginEnd="@dimen/progress_bar_margin_side"
+        android:max="900"
+        android:progress="900" />
 
     <TextView
         android:layout_marginTop="@dimen/questionTextTopMargin"
@@ -13,6 +32,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/question"
+        android:textColor="@color/black"
         android:textSize="30sp"/>
 
     <TableLayout
@@ -31,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/choiceButtonLeftRightMargin"
                 android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
-                android:text="@string/choice1"/>
+                android:text="@string/choice1"
+                android:background="@drawable/button_rounded_corners"/>
 
             <Button
                 android:id="@+id/choice2"
@@ -39,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
                 android:layout_marginEnd="@dimen/choiceButtonLeftRightMargin"
-                android:text="@string/choice2"/>
+                android:text="@string/choice2"
+                android:background="@drawable/button_rounded_corners"/>
         </TableRow>
 
         <TableRow
@@ -54,7 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/choiceButtonLeftRightMargin"
                 android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
-                android:text="@string/choice3"/>
+                android:text="@string/choice3"
+                android:background="@drawable/button_rounded_corners"/>
 
             <Button
                 android:id="@+id/choice4"
@@ -62,7 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
                 android:layout_marginEnd="@dimen/choiceButtonLeftRightMargin"
-                android:text="@string/choice4"/>
+                android:text="@string/choice4"
+                android:background="@drawable/button_rounded_corners"/>
         </TableRow>
 
     </TableLayout>
