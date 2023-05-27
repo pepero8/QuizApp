@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
@@ -59,9 +61,11 @@ public class MultipleChoiceQuestionActivity extends AppCompatActivity {
 
         // 문제 모음집 객체 생성&초기화
         HashMap<String, String> questionMap = new HashMap<>();
+        // "질문", "정답:오답:오답:오답"
         questionMap.put("한국외대 총장의 이름은?", "박정운:아이유:박명수:김인철");
         questionMap.put("내가 오늘 아침에 먹은 음식은?", "안먹음:된장찌개:김치찌개:부대찌개");
         questionMap.put("내 생일은?", "8월14일:1월30일:6월3일:12월30일");
+        questionMap.put("매일 요구르트의 칼로리는?", "30kcal:25kcal:35kcal:20kcal");
         questions = new Questions(questionMap);
 
         View.OnClickListener choiceButtonListener = new View.OnClickListener() {
@@ -104,10 +108,11 @@ public class MultipleChoiceQuestionActivity extends AppCompatActivity {
     public void loadNextQuestion() {
         Questions.QnA nextQnA = questions.next();
         question.setText("Q. " + nextQnA.getQuestion());
-        choiceButton1.setText(nextQnA.getChoices()[0]);
-        choiceButton2.setText(nextQnA.getChoices()[1]);
-        choiceButton3.setText(nextQnA.getChoices()[2]);
-        choiceButton4.setText(nextQnA.getChoices()[3]);
+        String[] choices = nextQnA.getChoices();
+        choiceButton1.setText(choices[0]);
+        choiceButton2.setText(choices[1]);
+        choiceButton3.setText(choices[2]);
+        choiceButton4.setText(choices[3]);
     }
 
     private static String hmsTimeFormatter(long l) {

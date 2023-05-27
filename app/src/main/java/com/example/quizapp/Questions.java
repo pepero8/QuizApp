@@ -1,8 +1,13 @@
 package com.example.quizapp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Questions {
     static class QnA {
@@ -25,7 +30,7 @@ public class Questions {
         }
 
         String[] getChoices() {
-            // random shuffle?
+            Collections.shuffle(Arrays.asList(choices));
             return choices;
         }
     }
@@ -38,13 +43,34 @@ public class Questions {
      * @param questionListMap 문제 정보를 담고 있는 Map 객체
      */
     Questions(Map<String, String> questionListMap) {
-        questionList = new ArrayList<>(questionListMap.size());
+        int questionListSize = questionListMap.size();
+        questionList = new ArrayList<>(questionListSize);
 
-        for (Map.Entry<String, String> entry : questionListMap.entrySet()) {
-            String[] choices = entry.getValue().split(":");
-            String answer = choices[0];
-            questionList.add(new QnA(entry.getKey(), answer, choices));
+        Integer[] idxArray = new Integer[questionListSize];
+        for (int i = 0; i < questionListSize; i++) {
+            idxArray[i] = i;
         }
+
+        // 문제집을 섞은 다음 questionList에 추가
+        List<Integer> idxList = Arrays.asList(idxArray);
+        Collections.shuffle(idxList);
+
+        Log.d("Questions", "idxList: " + idxList.toString());
+
+        Map.Entry<String, String>[] questionSet = new Map.Entry[questionListSize];
+        questionSet = questionListMap.entrySet().toArray(questionSet);
+
+        for (int nextIdx : idxList) {
+            String[] choices = questionSet[nextIdx].getValue().split(":");
+            String answer = choices[0];
+            questionList.add(new QnA(questionSet[nextIdx].getKey(), answer, choices));
+        }
+
+//        for (Map.Entry<String, String> entry : questionListMap.entrySet()) {
+//            String[] choices = entry.getValue().split(":");
+//            String answer = choices[0];
+//            questionList.add(new QnA(entry.getKey(), answer, choices));
+//        }
     }
 
     /**
