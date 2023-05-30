@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6000"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="225dp"
+        android:layout_height="188dp"
+        android:text="Hello QUIZworld!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.187" />
+
+    <EditText
+        android:id="@+id/entry"
+        android:layout_width="324dp"
+        android:layout_height="28dp"
+        android:layout_below="@id/label"
+        android:layout_marginStart="43dp"
+        android:background="@android:drawable/editbox_background"
+        android:textColor="@color/black"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <Button
+        android:id="@+id/startbutton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="151dp"
+        android:layout_height="84dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/ic_launcher_background"
+        android:backgroundTint="#6B9C33"
+        android:text="START"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:icon="@android:drawable/ic_media_play"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/entry"
+        app:rippleColor="@color/black"
+        app:strokeColor="#98C19A" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="102dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="12dp"
+        android:text="USER name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label" />
+
+    <Switch
+        android:id="@+id/englishbotton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="242dp"
+        android:layout_marginTop="45dp"
+        android:text="language change"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

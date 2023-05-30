@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,7 +90,11 @@ public class QuestionActivity extends AppCompatActivity {
                 Questions.QnA qna = questions.current();
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
+                    Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
                     correctCount++;
+                }
+                else {
+                    Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
                 }
 
                 // 다음 문제 로드
