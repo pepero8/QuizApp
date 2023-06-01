@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuestionActivity"/>
+        <activity android:name=".ShowScoreActivity"/>
     </application>
 
 </manifest>

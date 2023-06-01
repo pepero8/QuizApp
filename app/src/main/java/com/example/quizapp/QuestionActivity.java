@@ -2,6 +2,7 @@ package com.example.quizapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -34,6 +35,7 @@ public class QuestionActivity extends AppCompatActivity {
     private ViewGroup questionChildLayout;
     private View subjectiveQ, multipleChoiceQ; // 주관식 뷰, 객관식 뷰
     private View currentView; // 현재 뷰
+    private CountDownTimer timer;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -126,7 +128,7 @@ public class QuestionActivity extends AppCompatActivity {
         // 시간 제한 설정
         progressBar.setMax((int) TIME_MS);
         progressBar.setProgress((int) TIME_MS);
-        CountDownTimer timer = new CountDownTimer(TIME_MS, 100) {
+        timer = new CountDownTimer(TIME_MS, 100) {
             @Override
             public void onTick(long l) {
                 textViewTime.setText(hmsTimeFormatter(l));
@@ -137,10 +139,23 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 progressBar.setProgress(0);
+                Intent myIntent = new Intent(QuestionActivity.this, ShowScoreActivity.class);
+                myIntent.putExtra("score", correctCount);
+                myIntent.putExtra("size", questions.size());
+                startActivity(myIntent);
                 Toast.makeText(QuestionActivity.this, "총 맞춘 개수: " + correctCount, Toast.LENGTH_SHORT).show();
+                finish();
             }
         };
         timer.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.cancel();
+        finish();
+        Log.d(TAG, "stopped");
     }
 
     private void initializeVariables() {

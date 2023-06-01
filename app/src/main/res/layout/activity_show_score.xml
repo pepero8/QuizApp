@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200sp"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="당신의 점수는..." />
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="80sp"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="10/10"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="100sp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:layout_marginEnd="80sp"
+            android:textSize="20sp"
+            android:background="@drawable/button_rounded_corners"
+            android:text="확인" />
+
+        <Button
+            android:id="@+id/rankingButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="20sp"
+            android:background="@drawable/button_rounded_corners"
+            android:text="랭킹" />
+    </LinearLayout>
+</LinearLayout>
