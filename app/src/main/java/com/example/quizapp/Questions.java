@@ -2,9 +2,14 @@ package com.example.quizapp;
 
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -113,5 +118,26 @@ public class Questions {
      */
     int size() {
         return questionList.size();
+    }
+
+    public static Questions readQuizFromFile(String filename) {
+        Map<String, String> qmap = new HashMap<>();
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] splitted = line.split("-");
+                qmap.put(splitted[0], splitted[1]);
+            }
+
+            fis.close();
+
+        } catch (IOException ioe) {
+            Log.d("Questions", ioe.toString());
+        }
+
+        return new Questions(qmap);
     }
 }

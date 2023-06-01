@@ -16,8 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -44,17 +42,9 @@ public class QuestionActivity extends AppCompatActivity {
 
         initializeVariables();
 
-        // 문제 모음집 객체 생성&초기화
-        HashMap<String, String> questionMap = new HashMap<>();
-        // "타입:질문", "정답:오답:오답:오답"
-        questionMap.put("M:한국외대 총장의 이름은?", "박정운:아이유:박명수:김인철");
-        questionMap.put("M:내가 오늘 아침에 먹은 음식은?", "안먹음:된장찌개:김치찌개:부대찌개");
-        questionMap.put("M:내 생일은?", "8월14일:1월30일:6월3일:12월30일");
-        questionMap.put("M:매일 요구르트의 칼로리는?", "30kcal:25kcal:35kcal:20kcal");
-        questionMap.put("S:우리나라 이름은?", "대한민국");
-        questionMap.put("S:현재 년도는?", "2023");
-        questionMap.put("S:1+1은?", "2");
-        questions = new Questions(questionMap);
+        // 문제 모음집 읽어오기
+        String path = getApplicationContext().getFilesDir().getPath() + "/questions.txt";
+        questions = Questions.readQuizFromFile(path);
 
         subjectiveAnswerText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
