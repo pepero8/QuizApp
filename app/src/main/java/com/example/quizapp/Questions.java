@@ -26,6 +26,7 @@ public class Questions {
         }
     }
 
+    // 객관식 문제 클래스
     static class MultipleChoiceQnA extends QnA {
         private final String[] choices;
         MultipleChoiceQnA(String question, String answer, String[] choices) {
@@ -40,15 +41,16 @@ public class Questions {
         }
     }
 
+    // 주관식 문제 클래스
     static class SubjectiveQnA extends QnA {
         SubjectiveQnA(String question, String answer) {
             this.question = question;
             this.answer = answer;
         }
     }
-    private final List<QnA> questionList;
+    private final List<QnA> questionList; // 문제 리스트
 //    private QuestionAndAnswer curQuestion;
-    private int currentQnAidx = -1;
+    private int currentQnAidx = -1; // 현재 문제의 인덱스
 
     /**
      * 생성자
@@ -72,15 +74,18 @@ public class Questions {
         Map.Entry<String, String>[] questionSet = new Map.Entry[questionListSize];
         questionSet = questionListMap.entrySet().toArray(questionSet);
 
+        // questionSet에서 문제를 하나씩 추출
         for (int nextIdx : idxList) {
             String[] q = questionSet[nextIdx].getKey().split(":");
             String question = q[1];
             String value = questionSet[nextIdx].getValue();
+            // 객관식일 경우
             if (q[0].equals("M")) {
                 String[] choices = value.split(":");
                 String answer = choices[0];
                 questionList.add(new MultipleChoiceQnA(question, answer, choices));
             }
+            // 주관식일 경우
             else if (q[0].equals("S")) {
                 questionList.add(new SubjectiveQnA(question, value));
             }
@@ -120,6 +125,11 @@ public class Questions {
         return questionList.size();
     }
 
+    /**
+     * 인자로 주어진 파일로부터 문제들을 읽어옵니다.
+     * @param filename 문제들이 저장되어 있는 파일 이름
+     * @return Questions 객체
+     */
     public static Questions readQuizFromFile(String filename) {
         Map<String, String> qmap = new HashMap<>();
         try {

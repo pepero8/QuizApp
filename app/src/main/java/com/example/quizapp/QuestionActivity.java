@@ -19,8 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.concurrent.TimeUnit;
 
 public class QuestionActivity extends AppCompatActivity {
+    private static final String questionFileName = "questions.txt";
     private static final String TAG = "QuestionActivity";
-    private static final long TIME_MS = 20000L;
+    private static final long TIME_MS = 20000L; // 제한 시간(ms)
     private Questions questions;
     private TextView multipleChoiceQuestionText, subjectiveQuestionText;
     private EditText subjectiveAnswerText;
@@ -31,8 +32,8 @@ public class QuestionActivity extends AppCompatActivity {
     private int correctCount = 0;
 
     private ViewGroup questionChildLayout;
-    private View subjectiveQ, multipleChoiceQ;
-    private View currentView;
+    private View subjectiveQ, multipleChoiceQ; // 주관식 뷰, 객관식 뷰
+    private View currentView; // 현재 뷰
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,26 +41,26 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        initializeVariables();
+        initializeVariables(); // 필드들 초기화
 
         // 문제 모음집 읽어오기
-        String path = getApplicationContext().getFilesDir().getPath() + "/questions.txt";
+        String path = getApplicationContext().getFilesDir().getPath() + "/" + questionFileName;
         questions = Questions.readQuizFromFile(path);
 
         subjectiveAnswerText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
+            // 주관식 답변 칸이 포커스를 얻으면 힌트 텍스트 삭제, 포커스를 잃으면 힌트 텍스트 보이기
             public void onFocusChange(View view, boolean b) {
                 if (b) {
-                    // When EditText gains focus, clear the hint text
-                    ((EditText)view).setHint("");
+                    ((EditText)view).setHint(""); // 포커스를 얻을 경우
                 } else {
-                    // When EditText loses focus, set the hint text
-                    ((EditText)view).setHint("답변 입력");
+                    ((EditText)view).setHint("답변 입력"); // 포커스를 잃을 경우
                 }
             }
         });
         subjectiveAnswerText.setOnKeyListener(new View.OnKeyListener() {
             @Override
+            // 엔터를 누르면 키보드 숨기기
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -75,9 +76,9 @@ public class QuestionActivity extends AppCompatActivity {
         View.OnClickListener choiceButtonListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 정답인지 확인
                 String text = ((Button)view).getText().toString();
                 Questions.QnA qna = questions.current();
+                // 정답인지 확인
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
@@ -103,6 +104,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String text = subjectiveAnswerText.getText().toString();
                 Questions.QnA qna = questions.current();
+                // 정답인지 확인
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
@@ -119,7 +121,7 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
-        loadNextQuestion();
+        loadNextQuestion(); // 첫 문제 로드
 
         // 시간 제한 설정
         progressBar.setMax((int) TIME_MS);
@@ -159,6 +161,7 @@ public class QuestionActivity extends AppCompatActivity {
         textViewTime = findViewById(R.id.textViewTime);
     }
 
+    // 밀리초를 HH:MM:SS 형식으로 변환
     private static String hmsTimeFormatter(long l) {
         return String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(l) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(l)),
@@ -167,6 +170,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     public void loadNextQuestion() {
         Questions.QnA nextQnA = questions.next();
+        // 다음 문제가 객관식이라면
         if (nextQnA instanceof Questions.MultipleChoiceQnA) {
             changeToMultipleChoiceQview();
 
@@ -177,6 +181,7 @@ public class QuestionActivity extends AppCompatActivity {
             choiceButton3.setText(choices[2]);
             choiceButton4.setText(choices[3]);
         }
+        // 다음 문제가 주관식이라면
         else if (nextQnA instanceof Questions.SubjectiveQnA) {
             changeToSubjectiveQview();
 
@@ -186,19 +191,21 @@ public class QuestionActivity extends AppCompatActivity {
         }
     }
 
+    // 주관식 뷰로 변경
     private void changeToSubjectiveQview() {
+        // 현재 뷰가 이미 주관식 뷰라면
         if (currentView != null && currentView == subjectiveQ) return;
-        // subjectiveQ = getLayoutInflater().inflate(R.layout.subjective_question, questionChildLayout, false);
         questionChildLayout.removeView(multipleChoiceQ);
-        questionChildLayout.addView(subjectiveQ);
+        questionChildLayout.addView(subjectiveQ); // 뷰 그룹에 자식 뷰로 삽입
         currentView = subjectiveQ;
     }
 
+    // 객관식 뷰로 변경
     private void changeToMultipleChoiceQview() {
+        // 현재 뷰가 이미 객관식 뷰라면
         if (currentView != null && currentView == multipleChoiceQ) return;
-        // subjectiveQ = getLayoutInflater().inflate(R.layout.subjective_question, questionChildLayout, false);
         questionChildLayout.removeView(subjectiveQ);
-        questionChildLayout.addView(multipleChoiceQ);
+        questionChildLayout.addView(multipleChoiceQ); // 뷰 그룹에 자식 뷰로 삽입
         currentView = multipleChoiceQ;
     }
 }

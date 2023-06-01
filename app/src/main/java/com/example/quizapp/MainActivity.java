@@ -24,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button startButton = findViewById(R.id.startbutton);
-        EditText playerNameView = findViewById(R.id.entry);
+        EditText playerNameView = findViewById(R.id.entry); // 닉네임 적는 곳
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            // 버튼 클릭 시 닉네임을 추출하고 QuestionActivity 시작
             public void onClick(View view) {
                 playerName = playerNameView.getText().toString();
                 Log.d(TAG, "player name: " + playerName);
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         playerNameView.setOnKeyListener(new View.OnKeyListener() {
             @Override
+            // 엔터를 누르면 키보드 숨기기
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
