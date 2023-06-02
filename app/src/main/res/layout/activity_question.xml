@@ -7,7 +7,7 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/question_title"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#FF69B4"
@@ -43,7 +43,7 @@
         android:layout_height="63dp"
         android:src="@drawable/baseline_timer_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/question_title" />
 
     <TextView
         android:id="@+id/textViewTime"
@@ -54,7 +54,7 @@
         android:text="00:10"
         android:textColor="@color/black"
         android:textSize="40sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/question_title" />
 
     <ProgressBar
         android:id="@+id/progressBar"

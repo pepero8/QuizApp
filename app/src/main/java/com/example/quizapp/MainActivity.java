@@ -1,5 +1,7 @@
 package com.example.quizapp;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,34 +12,29 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
-    private String playerName;
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button startButton = findViewById(R.id.startbutton);
-        EditText playerNameView = findViewById(R.id.entry); // 닉네임 적는 곳
+        final EditText nametext = (EditText) findViewById(R. id.nametext);
+        Button startbutton = (Button) findViewById(R. id.startbutton);
 
-        startButton.setOnClickListener(new View.OnClickListener() {
+        startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            // 버튼 클릭 시 닉네임을 추출하고 QuestionActivity 시작
-            public void onClick(View view) {
-                playerName = playerNameView.getText().toString();
-                Log.d(TAG, "player name: " + playerName);
-                Intent myIntent = new Intent(MainActivity.this, QuestionActivity.class);
-                startActivity(myIntent);
+            public void onClick(View v) {
+                String name = nametext.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                intent.putExtra("nametext", name);
+                startActivity(intent);
+
             }
         });
 
-        playerNameView.setOnKeyListener(new View.OnKeyListener() {
+        nametext.setOnKeyListener(new View.OnKeyListener() {
             @Override
             // 엔터를 누르면 키보드 숨기기
             public boolean onKey(View view, int i, KeyEvent keyEvent) {

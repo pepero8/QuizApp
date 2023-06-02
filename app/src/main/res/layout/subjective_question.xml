@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="250sp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textView">
+    app:layout_constraintTop_toBottomOf="@+id/question_title">
 
     <TextView
         android:id="@+id/textViewQuestion"

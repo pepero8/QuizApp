@@ -24,6 +24,7 @@ public class QuestionActivity extends AppCompatActivity {
     private static final String TAG = "QuestionActivity";
     private static final long TIME_MS = 20000L; // 제한 시간(ms)
     private Questions questions;
+    private TextView title;
     private TextView multipleChoiceQuestionText, subjectiveQuestionText;
     private EditText subjectiveAnswerText;
     private Button choiceButton1, choiceButton2, choiceButton3, choiceButton4;
@@ -44,6 +45,10 @@ public class QuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question);
 
         initializeVariables(); // 필드들 초기화
+
+        Intent intent = getIntent();
+        String playername = intent.getStringExtra("playername").toString();
+        title.setText(playername);
 
         // 문제 모음집 읽어오기
         String path = getApplicationContext().getFilesDir().getPath() + "/" + questionFileName;
@@ -164,6 +169,7 @@ public class QuestionActivity extends AppCompatActivity {
         multipleChoiceQ = getLayoutInflater().inflate(R.layout.multiplechoice_question, questionChildLayout, false);
 //        questionChildLayout.addView(subjectiveQ);
 
+        title = findViewById(R.id.question_title);
         subjectiveQuestionText = subjectiveQ.findViewById(R.id.textViewQuestion);
         multipleChoiceQuestionText = multipleChoiceQ.findViewById(R.id.question);
         subjectiveAnswerText = subjectiveQ.findViewById(R.id.answer);
