@@ -160,6 +160,7 @@ public class QuestionActivity extends AppCompatActivity {
             public void onFinish() {
                 progressBar.setProgress(0);
                 Intent myIntent = new Intent(QuestionActivity.this, ShowScoreActivity.class);
+                myIntent.putExtra("playername", playername);
                 myIntent.putExtra("score", correctCount);
                 myIntent.putExtra("size", questions.size());
                 startActivity(myIntent);

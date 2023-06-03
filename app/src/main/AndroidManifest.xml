@@ -22,6 +22,7 @@
         <activity android:name=".QuestionActivity"/>
         <activity android:name=".ShowScoreActivity"/>
         <activity android:name=".SelectTopicActivity"/>
+        <activity android:name=".ShowRankingActivity"/>
     </application>
 
 </manifest>

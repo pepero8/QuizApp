@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ShowScoreActivity extends AppCompatActivity {
     private static final String TAG = "ShowScoreActivity";
+    private String playername;
+    private int score;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,11 +21,14 @@ public class ShowScoreActivity extends AppCompatActivity {
 
         TextView scoreText = findViewById(R.id.scoreText);
         Button okButton = findViewById(R.id.okButton);
+        Button rankingButton = findViewById(R.id.rankingButton);
 
         Intent intent = getIntent();
+        int size;
         if (intent != null) {
-            int score = intent.getIntExtra("score", 0);
-            int size = intent.getIntExtra("size", 0);
+            playername = intent.getStringExtra("playername");
+            score = intent.getIntExtra("score", 0);
+            size = intent.getIntExtra("size", 0);
             scoreText.setText(score + "/" + size);
         }
 
@@ -35,5 +40,15 @@ public class ShowScoreActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        rankingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ShowRankingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        DataBase.submitScore(playername, score);
     }
 }
