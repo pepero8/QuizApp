@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.concurrent.TimeUnit;
 
 public class QuestionActivity extends AppCompatActivity {
-    private static final String questionFileName = "questions.txt";
+    private static String questionFileName;
     private static final String TAG = "QuestionActivity";
     private static final long TIME_MS = 20000L; // 제한 시간(ms)
     private Questions questions;
@@ -47,9 +47,24 @@ public class QuestionActivity extends AppCompatActivity {
         initializeVariables(); // 필드들 초기화
 
         Intent intent = getIntent();
-        String playername = intent.getStringExtra("playername").toString();
+        String playername = intent.getStringExtra("playername");
+        String topic = intent.getStringExtra("topic");
         title.setText(playername);
 
+        switch (topic) {
+            case "역사":
+                questionFileName = "questions1.txt";
+                break;
+            case "인물":
+                questionFileName = "questions2.txt";
+                break;
+            case "과학":
+                questionFileName = "questions3.txt";
+                break;
+            case "외대":
+                questionFileName = "questions4.txt";
+                break;
+        }
         // 문제 모음집 읽어오기
         String path = getApplicationContext().getFilesDir().getPath() + "/" + questionFileName;
         questions = Questions.readQuizFromFile(path);

@@ -24,7 +24,7 @@ public class Main2Activity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), QuestionActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SelectTopicActivity.class);
                 intent.putExtra("playername", playername);
                 startActivity(intent);
                 finish();

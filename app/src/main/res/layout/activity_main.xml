@@ -4,32 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="225dp"
-        android:layout_height="188dp"
-        android:text="Hello QUIZworld!"
-        android:textColor="@color/black"
+        android:layout_height="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/title"
+        android:gravity="center_horizontal"
+        android:paddingTop="16sp"
+        android:text="U Quiz? I Quiz!"
+        android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.661"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.187" />
+        app:layout_constraintTop_toBottomOf="@+id/englishbotton" />
 
     <Button
         android:id="@+id/startbutton"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="151dp"
-        android:layout_height="84dp"
+        android:layout_height="50dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="108dp"
-        android:background="@drawable/ic_launcher_background"
-        android:backgroundTint="#6B9C33"
+        android:background="@drawable/button"
         android:text="START"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:icon="@android:drawable/ic_media_play"
@@ -52,12 +53,12 @@
     <EditText
         android:id="@+id/nametext"
         android:layout_width="267dp"
-        android:layout_height="77dp"
+        android:layout_height="30dp"
         android:layout_marginStart="72dp"
         android:ems="10"
         android:inputType="text"
         android:textColor="@color/black"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/input_block"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150sp"
+        android:gravity="center"
+        android:text="주제 선택"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="100sp">
+
+            <Button
+                android:id="@+id/topic1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
+                android:text="역사"
+                android:textSize="@dimen/buttonTextSize"
+                android:background="@drawable/button_rounded_corners"/>
+
+            <Button
+                android:id="@+id/topic2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
+                android:text="인물"
+                android:textSize="@dimen/buttonTextSize"
+                android:background="@drawable/button_rounded_corners"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="50sp">
+
+            <Button
+                android:id="@+id/topic3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
+                android:text="과학"
+                android:textSize="@dimen/buttonTextSize"
+                android:background="@drawable/button_rounded_corners"/>
+
+            <Button
+                android:id="@+id/topic4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
+                android:text="외대"
+                android:textSize="@dimen/buttonTextSize"
+                android:background="@drawable/button_rounded_corners"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>
