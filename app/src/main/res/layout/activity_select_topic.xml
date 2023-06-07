@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:layout_height="match_parent">
 
 
@@ -28,21 +28,21 @@
 
             <Button
                 android:id="@+id/topic1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110sp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
                 android:text="역사"
                 android:textSize="@dimen/buttonTextSize"
-                android:background="@drawable/button_rounded_corners"/>
+                android:background="@drawable/button"/>
 
             <Button
                 android:id="@+id/topic2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110sp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
                 android:text="인물"
                 android:textSize="@dimen/buttonTextSize"
-                android:background="@drawable/button_rounded_corners"/>
+                android:background="@drawable/button"/>
         </TableRow>
 
         <TableRow
@@ -53,21 +53,21 @@
 
             <Button
                 android:id="@+id/topic3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110sp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginEnd="@dimen/betweenChoiceButtonMargin"
                 android:text="과학"
                 android:textSize="@dimen/buttonTextSize"
-                android:background="@drawable/button_rounded_corners"/>
+                android:background="@drawable/button"/>
 
             <Button
                 android:id="@+id/topic4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110sp"
+                android:layout_height="@dimen/button_height"
                 android:layout_marginStart="@dimen/betweenChoiceButtonMargin"
                 android:text="외대"
                 android:textSize="@dimen/buttonTextSize"
-                android:background="@drawable/button_rounded_corners"/>
+                android:background="@drawable/button"/>
         </TableRow>
 
     </TableLayout>

@@ -44,6 +44,12 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+        // 하단 소프트바 제거
+        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+        uiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+
         initializeVariables(); // 필드들 초기화
 
         Intent intent = getIntent();

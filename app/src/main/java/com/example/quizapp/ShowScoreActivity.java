@@ -19,6 +19,12 @@ public class ShowScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_score);
 
+        // 하단 소프트바 제거
+        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+        uiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+
         TextView scoreText = findViewById(R.id.scoreText);
         Button okButton = findViewById(R.id.okButton);
         Button rankingButton = findViewById(R.id.rankingButton);

@@ -20,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 하단 소프트바 제거
+        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+        uiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+
         final EditText nametext = (EditText) findViewById(R. id.nametext);
         Button startbutton = (Button) findViewById(R. id.startbutton);
 

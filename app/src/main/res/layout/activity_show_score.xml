@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <TextView
@@ -34,21 +34,21 @@
 
         <Button
             android:id="@+id/okButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90sp"
+            android:layout_height="@dimen/button_height"
             android:layout_weight="0"
             android:layout_marginEnd="80sp"
             android:textSize="@dimen/buttonTextSize"
-            android:background="@drawable/button_rounded_corners"
+            android:background="@drawable/button"
             android:text="확인" />
 
         <Button
             android:id="@+id/rankingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90sp"
+            android:layout_height="@dimen/button_height"
             android:layout_weight="0"
             android:textSize="@dimen/buttonTextSize"
-            android:background="@drawable/button_rounded_corners"
+            android:background="@drawable/button"
             android:text="랭킹" />
     </LinearLayout>
 </LinearLayout>

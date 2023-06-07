@@ -15,6 +15,12 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(bundle);
         setContentView(R.layout.activity_main2);
 
+        // 하단 소프트바 제거
+        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+        uiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+
         Button startButton = findViewById(R.id.gamestartbutton);
         TextView nametext = findViewById(R.id.nametext);
         Intent intent = getIntent();

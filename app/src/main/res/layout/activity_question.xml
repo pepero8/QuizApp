@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/question_title"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#FF69B4"
+        android:background="@drawable/bar"
         android:gravity="center"
         android:text="Quiz app"
         android:textSize="30sp"
@@ -41,6 +41,8 @@
         android:id="@+id/myImageView"
         android:layout_width="100dp"
         android:layout_height="63dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="252dp"
         android:src="@drawable/baseline_timer_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_title" />
@@ -49,7 +51,7 @@
         android:id="@+id/textViewTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="00:10"
         android:textColor="@color/black"
@@ -62,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:max="20000"
         android:progress="20000"

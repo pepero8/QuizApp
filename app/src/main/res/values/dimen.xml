@@ -2,9 +2,11 @@
 <resources>
     <dimen name="questionTextTopMargin">250sp</dimen>
     <dimen name="choiceButtonLeftRightMargin">20sp</dimen>
-    <dimen name="betweenChoiceButtonMargin">40sp</dimen>
+    <dimen name="betweenChoiceButtonMargin">30sp</dimen>
     <dimen name="button_corner_radius">10sp</dimen>
     <dimen name="timer_margin_top">30sp</dimen>
     <dimen name="progress_bar_margin_side">20sp</dimen>
     <dimen name="buttonTextSize">20sp</dimen>
+    <dimen name="button_height">50sp</dimen>
+    <dimen name="button_width">151sp</dimen>
 </resources>

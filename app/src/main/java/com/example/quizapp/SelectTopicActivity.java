@@ -15,6 +15,12 @@ public class SelectTopicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_topic);
 
+        // 하단 소프트바 제거
+        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
+        uiOptions ^= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+
         String playername = getIntent().getStringExtra("playername");
 
         Button topic1 = findViewById(R.id.topic1);
