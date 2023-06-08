@@ -1,6 +1,5 @@
 package com.example.quizapp;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -63,7 +62,7 @@ public class ShowRankingActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setColor(view);
+//                setColor(view);
 
                 String topic = ((Button)view).getText().toString();
                 DataBase.getScores(new DataBase.Callback() {
@@ -107,7 +106,7 @@ public class ShowRankingActivity extends AppCompatActivity {
         finish();
     }
 
-    private void setColor(View view) {
+//    private void setColor(View view) {
 //        for (Button button : topicButtonList) {
 //            Log.d("FUCKING", "color filter set to null");
 //            button.getBackground().setColorFilter(null);
@@ -119,10 +118,10 @@ public class ShowRankingActivity extends AppCompatActivity {
 //        topic4RankingButton.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.DST);
 
 //        topicButtonList.get(1).getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.SCREEN);
-        view.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.SCREEN);
+//        view.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.SCREEN);
 //        topic1RankingButton.getBackground().setColorFilter(null);
 //        topic2RankingButton.getBackground().setColorFilter(null);
 //        topic3RankingButton.getBackground().setColorFilter(null);
 //        topic4RankingButton.getBackground().setColorFilter(null);
-    }
+//    }
 }

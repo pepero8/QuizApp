@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText nametext = findViewById(R. id.nametext);
         Button startbutton = findViewById(R. id.startbutton);
-        Button rankingButton = findViewById(R.id.rankingButton1);
+        ImageView rankingButton = findViewById(R.id.rankingButton1);
 
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override

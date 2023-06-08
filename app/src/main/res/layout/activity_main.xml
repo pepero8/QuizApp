@@ -29,7 +29,7 @@
         android:layout_width="@dimen/button_width"
         android:layout_height="@dimen/button_height"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="100sp"
         android:background="@drawable/button"
         android:text="START"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -57,7 +57,9 @@
         android:layout_marginStart="72dp"
         android:ems="10"
         android:inputType="text"
+        android:gravity="center"
         android:textColor="@color/black"
+        android:maxLength="15"
         android:background="@drawable/input_block"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -67,20 +69,20 @@
         android:layout_width="114dp"
         android:layout_height="40dp"
         android:layout_marginStart="157dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="80sp"
         android:text="User Name"
         android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <Button
+    <ImageView
         android:id="@+id/rankingButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="278dp"
-        android:layout_marginTop="102dp"
-        android:text="ranking"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginStart="280sp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ranking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startbutton" />
 

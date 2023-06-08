@@ -22,7 +22,9 @@ import java.util.concurrent.TimeUnit;
 public class QuestionActivity extends AppCompatActivity {
     private static int questionFileId;
     private static final String TAG = "QuestionActivity";
-    private static final long TIME_MS = 20000L; // 제한 시간(ms)
+    private static final long TIME_MS = 120000L; // 제한 시간(ms)
+    private static final int MULTIPLEQ_POINT = 10; // 객관식 문제 배점
+    private static final int SUBJECTIVEQ_POINT = 30; // 주관식 문제 배점
     private Questions questions;
     private TextView title;
     private TextView multipleChoiceQuestionText, subjectiveQuestionText;
@@ -32,6 +34,7 @@ public class QuestionActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView textViewTime;
     private int correctCount = 0;
+    private int score = 0;
 
     private ViewGroup questionChildLayout;
     private View subjectiveQ, multipleChoiceQ; // 주관식 뷰, 객관식 뷰
@@ -59,7 +62,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         switch (topic) {
             case "역사":
-                questionFileId = R.raw.questions1;
+                questionFileId = R.raw.questions_1;
                 break;
             case "인물":
                 questionFileId = R.raw.questions2;
@@ -111,6 +114,7 @@ public class QuestionActivity extends AppCompatActivity {
                     Log.d(TAG, "correct");
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
                     correctCount++;
+                    score += MULTIPLEQ_POINT;
                 }
                 else {
                     Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
@@ -138,6 +142,7 @@ public class QuestionActivity extends AppCompatActivity {
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
 //                    subjectiveAnswerText.setText("정답입니다!");
                     correctCount++;
+                    score += SUBJECTIVEQ_POINT;
                 }
                 else {
                     Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
@@ -158,6 +163,9 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 textViewTime.setText(hmsTimeFormatter(l));
+                if (l <= 10000) { // 10초 남았을 경우 빨간색으로 변경
+                    textViewTime.setTextColor(getResources().getColor(R.color.red));
+                }
                 int current = progressBar.getProgress() - 100;
                 progressBar.setProgress(current);
             }
@@ -167,7 +175,8 @@ public class QuestionActivity extends AppCompatActivity {
                 progressBar.setProgress(0);
                 Intent myIntent = new Intent(QuestionActivity.this, ShowScoreActivity.class);
                 myIntent.putExtra("playername", playername);
-                myIntent.putExtra("score", correctCount);
+                myIntent.putExtra("count", correctCount);
+                myIntent.putExtra("score", score);
                 myIntent.putExtra("size", questions.size());
                 myIntent.putExtra("topic", topic);
                 startActivity(myIntent);

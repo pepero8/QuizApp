@@ -27,6 +27,7 @@ public class ShowScoreActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(uiOptions);
 
         TextView scoreText = findViewById(R.id.scoreText);
+        TextView countText = findViewById(R.id.countText);
         Button okButton = findViewById(R.id.okButton);
         Button rankingButton = findViewById(R.id.rankingButton2);
 
@@ -35,9 +36,11 @@ public class ShowScoreActivity extends AppCompatActivity {
         if (intent != null) {
             playername = intent.getStringExtra("playername");
             score = intent.getIntExtra("score", 0);
+            int count = intent.getIntExtra("count", 0);
             topic = intent.getStringExtra("topic");
             size = intent.getIntExtra("size", 0);
-            scoreText.setText(score + "/" + size);
+            scoreText.setText(String.valueOf(score));
+            countText.setText("맞춘 개수: " + count + "/" + size);
         }
 
         okButton.setOnClickListener(new View.OnClickListener() {
