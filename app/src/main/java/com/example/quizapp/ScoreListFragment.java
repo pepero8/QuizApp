@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScoreListFragment extends Fragment {
-    private ArrayList<Player> scoresList = new ArrayList<>();
+    private final ArrayList<Player> scoresList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private ScoreRecyclerViewAdapter scoreAdapter = new ScoreRecyclerViewAdapter(scoresList);
+    private final ScoreRecyclerViewAdapter scoreAdapter = new ScoreRecyclerViewAdapter(scoresList);
 
     public ScoreListFragment() {}
 
@@ -45,11 +45,21 @@ public class ScoreListFragment extends Fragment {
     }
 
     public void setScores(List<Player> players) {
-        for (Player player : players) {
-            if (!scoresList.contains(player)) {
-                scoresList.add(player);
-                scoreAdapter.notifyItemInserted(scoresList.indexOf(player));
-            }
+        int i = 0;
+        for (; i < players.size(); i++) {
+            scoresList.add(i, players.get(i));
+            scoreAdapter.notifyItemChanged(i);
         }
+
+        for (; i < scoresList.size(); i++) {
+            scoresList.remove(i);
+            scoreAdapter.notifyItemRemoved(i);
+        }
+//        for (Player player : players) {
+//            if (!scoresList.contains(player)) {
+//                scoresList.add(player);
+//                scoreAdapter.notifyItemInserted(scoresList.indexOf(player));
+//            }
+//        }
     }
 }

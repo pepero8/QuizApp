@@ -36,6 +36,7 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.player = players.get(position);
         holder.detailsView.setText(players.get(position).toString());
+        holder.rankNumberView.setText(String.valueOf(position + 1));
     }
 
     @Override
@@ -46,12 +47,14 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View parentView;
         public final TextView detailsView;
+        public final TextView rankNumberView;
         public Player player;
 
         public ViewHolder(View view) {
             super(view);
             parentView = view;
             detailsView = view.findViewById(R.id.list_item_score_details);
+            rankNumberView = view.findViewById(R.id.list_item_rank);
         }
 
         @NonNull

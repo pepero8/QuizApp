@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/ranking_frame">
+    android:layout_width="300sp"
+    android:layout_height="550sp"
+    android:id="@+id/ranking_frame"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/container"
+        android:contentDescription="ranking_box" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20sp"
+        android:text="랭킹"
+        android:textColor="@color/black"
+        android:textSize="40sp"/>
+
+    <Button
+        android:id="@+id/topic1_ranking"
+        android:layout_width="60sp"
+        android:layout_height="48sp"
+        android:text="역사"
+        android:translationX="10sp"
+        android:translationY="80sp"
+        android:background="@drawable/button"/>
+
+    <Button
+        android:id="@+id/topic2_ranking"
+        android:layout_width="60sp"
+        android:layout_height="48sp"
+        android:text="인물"
+        android:translationX="80sp"
+        android:translationY="80sp"
+        android:background="@drawable/button"/>
+
+    <Button
+        android:id="@+id/topic3_ranking"
+        android:layout_width="60sp"
+        android:layout_height="48sp"
+        android:text="과학"
+        android:translationX="150sp"
+        android:translationY="80sp"
+        android:background="@drawable/button"/>
+
+    <Button
+        android:id="@+id/topic4_ranking"
+        android:layout_width="60sp"
+        android:layout_height="48sp"
+        android:text="외대"
+        android:translationX="220sp"
+        android:translationY="80sp"
+        android:background="@drawable/button"/>
 
 </FrameLayout>

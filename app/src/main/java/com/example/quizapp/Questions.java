@@ -1,10 +1,11 @@
 package com.example.quizapp;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -127,14 +128,16 @@ public class Questions {
 
     /**
      * 인자로 주어진 파일로부터 문제들을 읽어옵니다.
-     * @param filename 문제들이 저장되어 있는 파일 이름
+     * @param fileId 문제들이 저장되어 있는 파일 id
      * @return Questions 객체
      */
-    public static Questions readQuizFromFile(String filename) {
+    public static Questions readQuizFromFile(Resources resources, int fileId) {
         Map<String, String> qmap = new HashMap<>();
         try {
-            FileInputStream fis = new FileInputStream(filename);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            InputStream is = resources.openRawResource(fileId);
+//            FileInputStream fis = new FileInputStream(filename);
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
             String line;
             while ((line = reader.readLine()) != null) {
@@ -142,7 +145,7 @@ public class Questions {
                 qmap.put(splitted[0], splitted[1]);
             }
 
-            fis.close();
+            is.close();
 
         } catch (IOException ioe) {
             Log.d("Questions", ioe.toString());

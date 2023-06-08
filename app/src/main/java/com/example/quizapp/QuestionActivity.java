@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.concurrent.TimeUnit;
 
 public class QuestionActivity extends AppCompatActivity {
-    private static String questionFileName;
+    private static int questionFileId;
     private static final String TAG = "QuestionActivity";
     private static final long TIME_MS = 20000L; // 제한 시간(ms)
     private Questions questions;
@@ -59,21 +59,21 @@ public class QuestionActivity extends AppCompatActivity {
 
         switch (topic) {
             case "역사":
-                questionFileName = "questions1.txt";
+                questionFileId = R.raw.questions1;
                 break;
             case "인물":
-                questionFileName = "questions2.txt";
+                questionFileId = R.raw.questions2;
                 break;
             case "과학":
-                questionFileName = "questions3.txt";
+                questionFileId = R.raw.questions_3;
                 break;
             case "외대":
-                questionFileName = "questions4.txt";
+                questionFileId = R.raw.questions4;
                 break;
         }
         // 문제 모음집 읽어오기
-        String path = getApplicationContext().getFilesDir().getPath() + "/" + questionFileName;
-        questions = Questions.readQuizFromFile(path);
+//        String path = getApplicationContext().getFilesDir().getPath() + "/" + questionFileName;
+        questions = Questions.readQuizFromFile(getResources(), questionFileId);
 
         subjectiveAnswerText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -169,6 +169,7 @@ public class QuestionActivity extends AppCompatActivity {
                 myIntent.putExtra("playername", playername);
                 myIntent.putExtra("score", correctCount);
                 myIntent.putExtra("size", questions.size());
+                myIntent.putExtra("topic", topic);
                 startActivity(myIntent);
                 Toast.makeText(QuestionActivity.this, "총 맞춘 개수: " + correctCount, Toast.LENGTH_SHORT).show();
                 finish();

@@ -13,6 +13,7 @@ public class ShowScoreActivity extends AppCompatActivity {
     private static final String TAG = "ShowScoreActivity";
     private String playername;
     private int score;
+    private String topic;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,13 +28,14 @@ public class ShowScoreActivity extends AppCompatActivity {
 
         TextView scoreText = findViewById(R.id.scoreText);
         Button okButton = findViewById(R.id.okButton);
-        Button rankingButton = findViewById(R.id.rankingButton);
+        Button rankingButton = findViewById(R.id.rankingButton2);
 
         Intent intent = getIntent();
         int size;
         if (intent != null) {
             playername = intent.getStringExtra("playername");
             score = intent.getIntExtra("score", 0);
+            topic = intent.getStringExtra("topic");
             size = intent.getIntExtra("size", 0);
             scoreText.setText(score + "/" + size);
         }
@@ -55,6 +57,6 @@ public class ShowScoreActivity extends AppCompatActivity {
             }
         });
 
-        DataBase.submitScore(playername, score);
+        DataBase.submitScore(playername, score, topic);
     }
 }

@@ -14,7 +14,7 @@
         android:gravity="center"
         android:text="Q1.우리나라의 이름은?"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:id="@+id/answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150sp"
         android:gravity="center"
         android:hint="답변 입력"
         android:textColorHint="@color/hint_color"

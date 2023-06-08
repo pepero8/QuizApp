@@ -74,4 +74,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
+    <Button
+        android:id="@+id/rankingButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="102dp"
+        android:text="ranking"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startbutton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

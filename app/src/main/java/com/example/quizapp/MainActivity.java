@@ -26,8 +26,9 @@ public class MainActivity extends AppCompatActivity {
         uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         getWindow().getDecorView().setSystemUiVisibility(uiOptions);
 
-        final EditText nametext = (EditText) findViewById(R. id.nametext);
-        Button startbutton = (Button) findViewById(R. id.startbutton);
+        final EditText nametext = findViewById(R. id.nametext);
+        Button startbutton = findViewById(R. id.startbutton);
+        Button rankingButton = findViewById(R.id.rankingButton1);
 
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,14 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        rankingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ShowRankingActivity.class);
+                startActivity(intent);
             }
         });
     }

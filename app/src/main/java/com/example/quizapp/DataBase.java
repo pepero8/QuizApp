@@ -18,9 +18,9 @@ public class DataBase {
     }
     private final static String URL = "https://uquiziquiz-ranking-default-rtdb.asia-southeast1.firebasedatabase.app/";
 //    private static HashMap<String, Integer> scores;
-    static void getScores(Callback callback) {
+    static void getScores(Callback callback, String topic) {
         FirebaseDatabase database = FirebaseDatabase.getInstance(URL);
-        DatabaseReference ref = database.getReference("players");
+        DatabaseReference ref = database.getReference(topic);
         ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -36,10 +36,10 @@ public class DataBase {
             }
         });
     }
-    static void submitScore(String playerName, int score) {
+    static void submitScore(String playerName, int score, String topic) {
         FirebaseDatabase database = FirebaseDatabase.getInstance(URL);
-        DatabaseReference ref = database.getReference("players");
+        DatabaseReference ref = database.getReference(topic);
         ref.child(playerName).setValue(score);
-        Log.d("firebase", "submitted score");
+        Log.d("firebase", "submitted score - " + playerName + ", " + topic + ", " + score);
     }
 }

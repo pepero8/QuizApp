@@ -43,7 +43,7 @@
             android:text="확인" />
 
         <Button
-            android:id="@+id/rankingButton"
+            android:id="@+id/rankingButton2"
             android:layout_width="90sp"
             android:layout_height="@dimen/button_height"
             android:layout_weight="0"
