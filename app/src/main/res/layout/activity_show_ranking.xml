@@ -22,6 +22,14 @@
         android:textColor="@color/black"
         android:textSize="40sp"/>
 
+    <ImageView
+        android:id="@+id/close_ranking"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
+        android:translationX="240sp"
+        android:translationY="30sp"
+        android:background="@drawable/icon_x"/>
+
     <Button
         android:id="@+id/topic1_ranking"
         android:layout_width="60sp"

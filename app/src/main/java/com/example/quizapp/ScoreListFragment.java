@@ -2,6 +2,7 @@ package com.example.quizapp;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ScoreListFragment extends Fragment {
-    private final ArrayList<Player> scoresList = new ArrayList<>();
+    private static final int LIMIT = 5;
+    private final ArrayList<Player> scoresList = new ArrayList<>(LIMIT);
     private RecyclerView recyclerView;
     private final ScoreRecyclerViewAdapter scoreAdapter = new ScoreRecyclerViewAdapter(scoresList);
 
@@ -45,16 +48,33 @@ public class ScoreListFragment extends Fragment {
     }
 
     public void setScores(List<Player> players) {
-        int i = 0;
-        for (; i < players.size(); i++) {
+        Log.d("SHIT", "" + players.size());
+
+        scoresList.clear();
+        scoreAdapter.notifyDataSetChanged();
+
+        Collections.sort(players);
+
+        for (int i = 0; i < players.size(); i++) {
+            if (i >= LIMIT) break;
             scoresList.add(i, players.get(i));
-            scoreAdapter.notifyItemChanged(i);
+            scoreAdapter.notifyItemInserted(i);
         }
 
-        for (; i < scoresList.size(); i++) {
-            scoresList.remove(i);
-            scoreAdapter.notifyItemRemoved(i);
-        }
+//        for (int i = 0; i < scoresList.size(); i++) {
+//            scoresList.remove(i);
+//            scoreAdapter.notifyItemRemoved(i);
+//        }
+//
+//        Collections.sort(players);
+//
+//        for (int i = 0; i < players.size(); i++) {
+//            if (i >= LIMIT) break;
+//            scoresList.add(i, players.get(i));
+//            scoreAdapter.notifyItemChanged(i);
+//        }
+
+
 //        for (Player player : players) {
 //            if (!scoresList.contains(player)) {
 //                scoresList.add(player);

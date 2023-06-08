@@ -2,13 +2,13 @@ package com.example.quizapp;
 
 import androidx.annotation.NonNull;
 
-public class Player {
+public class Player implements Comparable<Player> {
     private final String name;
 //    private long topic1Score = 0;
 //    private long topic2Score = 0;
 //    private long topic3Score = 0;
 //    private long topic4Score = 0;
-    private long score;
+    long score;
 
 //    public Player(String name) {
 //        this.name = name;
@@ -53,5 +53,10 @@ public class Player {
     @Override
     public String toString() {
         return name + "   " + score;
+    }
+
+    @Override
+    public int compareTo(Player player) {
+        return (int) (player.score - score);
     }
 }

@@ -1,10 +1,12 @@
 package com.example.quizapp;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,13 @@ public class ShowRankingActivity extends AppCompatActivity {
     private static final String TAG_LIST_FRAGMENT = "TAG_LIST_FRAGMENT";
     ScoreListFragment scoreListFragment;
 
+//    private List<Button> topicButtonList;
+    Button topic1RankingButton;
+    Button topic2RankingButton;
+    Button topic3RankingButton;
+    Button topic4RankingButton;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +41,12 @@ public class ShowRankingActivity extends AppCompatActivity {
         uiOptions ^= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         getWindow().getDecorView().setSystemUiVisibility(uiOptions);
 
-        Button topic1RankingButton = findViewById(R.id.topic1_ranking);
-        Button topic2RankingButton = findViewById(R.id.topic2_ranking);
-        Button topic3RankingButton = findViewById(R.id.topic3_ranking);
-        Button topic4RankingButton = findViewById(R.id.topic4_ranking);
+        topic1RankingButton = findViewById(R.id.topic1_ranking);
+        topic2RankingButton = findViewById(R.id.topic2_ranking);
+        topic3RankingButton = findViewById(R.id.topic3_ranking);
+        topic4RankingButton = findViewById(R.id.topic4_ranking);
+        ImageView closeButton = findViewById(R.id.close_ranking);
+//        topicButtonList = Arrays.asList(topic1RankingButton, topic2RankingButton, topic3RankingButton, topic4RankingButton);
 
         FragmentManager fm = getSupportFragmentManager();
 
@@ -52,6 +63,8 @@ public class ShowRankingActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setColor(view);
+
                 String topic = ((Button)view).getText().toString();
                 DataBase.getScores(new DataBase.Callback() {
                     @Override
@@ -79,11 +92,37 @@ public class ShowRankingActivity extends AppCompatActivity {
         topic2RankingButton.setOnClickListener(listener);
         topic3RankingButton.setOnClickListener(listener);
         topic4RankingButton.setOnClickListener(listener);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         finish();
+    }
+
+    private void setColor(View view) {
+//        for (Button button : topicButtonList) {
+//            Log.d("FUCKING", "color filter set to null");
+//            button.getBackground().setColorFilter(null);
+//        }
+
+//        topic1RankingButton.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.DST);
+//        topic2RankingButton.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.DST);
+//        topic3RankingButton.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.DST);
+//        topic4RankingButton.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.DST);
+
+//        topicButtonList.get(1).getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.SCREEN);
+        view.getBackground().setColorFilter(getResources().getColor(R.color.purple_200), PorterDuff.Mode.SCREEN);
+//        topic1RankingButton.getBackground().setColorFilter(null);
+//        topic2RankingButton.getBackground().setColorFilter(null);
+//        topic3RankingButton.getBackground().setColorFilter(null);
+//        topic4RankingButton.getBackground().setColorFilter(null);
     }
 }
