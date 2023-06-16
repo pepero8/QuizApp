@@ -11,4 +11,6 @@
     <color name="hint_color">#aaaaaa</color>
     <color name="background">#FFE4B5</color>
     <color name="red">#FF0000</color>
+    <color name="yellow">#FFF064</color>
+    <color name="blue">#0064FF</color>
 </resources>

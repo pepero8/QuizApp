@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecyclerViewAdapter.ViewHolder> {
@@ -35,7 +37,21 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.player = players.get(position);
-        holder.detailsView.setText(players.get(position).toString());
+//        holder.detailsView.setText(players.get(position).toString());
+        holder.detailsView.setText(players.get(position).getName());
+        holder.scoreView.setText(String.valueOf(players.get(position).getScore()));
+        if (position == 0) {
+            holder.detailsView.setTextColor(0xFFFFF064);
+        }
+        else if (position == 1) {
+            holder.detailsView.setTextColor(0xFFC12DFF);
+        }
+        else if (position == 2) {
+            holder.detailsView.setTextColor(0xFF0064FF);
+        }
+        else {
+            holder.detailsView.setTextColor(0xFFdcdcdc);
+        }
         holder.rankNumberView.setText(String.valueOf(position + 1));
     }
 
@@ -47,13 +63,15 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View parentView;
         public final TextView detailsView;
+        public final TextView scoreView;
         public final TextView rankNumberView;
         public Player player;
 
         public ViewHolder(View view) {
             super(view);
             parentView = view;
-            detailsView = view.findViewById(R.id.list_item_score_details);
+            detailsView = view.findViewById(R.id.list_item_name);
+            scoreView = view.findViewById(R.id.list_item_score);
             rankNumberView = view.findViewById(R.id.list_item_rank);
         }
 

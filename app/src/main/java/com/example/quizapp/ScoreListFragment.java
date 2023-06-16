@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ScoreListFragment extends Fragment {
-    private static final int LIMIT = 5;
+    private static final int LIMIT = 50; // 상위 LIMIT명의 순위만 표시
     private final ArrayList<Player> scoresList = new ArrayList<>(LIMIT);
     private RecyclerView recyclerView;
     private final ScoreRecyclerViewAdapter scoreAdapter = new ScoreRecyclerViewAdapter(scoresList);

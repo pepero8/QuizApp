@@ -19,31 +19,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="59dp"
-        android:layout_height="70dp"
-        android:scaleType="center"
-        android:src="@drawable/baseline_arrow_white_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="59dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:scaleType="center"-->
+<!--        android:src="@drawable/baseline_arrow_white_24"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageView
-        android:id="@+id/settings"
-        android:layout_width="59dp"
-        android:layout_height="70dp"
-        android:scaleType="center"
-        android:src="@drawable/baseline_more_horiz_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/settings"-->
+<!--        android:layout_width="59dp"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:scaleType="center"-->
+<!--        android:src="@drawable/baseline_more_horiz_24"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageView
         android:id="@+id/myImageView"
         android:layout_width="100dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="17dp"
         android:layout_marginEnd="252dp"
-        android:src="@drawable/baseline_timer_24"
+        android:src="@drawable/icon_clock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/question_title" />
 

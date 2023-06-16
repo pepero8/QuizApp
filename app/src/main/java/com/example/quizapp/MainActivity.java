@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         Button startbutton = findViewById(R. id.startbutton);
         ImageView rankingButton = findViewById(R.id.rankingButton1);
 
+        // start 버튼 클릭 시 Main2Activity를 create하고 닉네임을 intent로 전달
         startbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // 엔터를 누르면 키보드 숨기기
         nametext.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            // 엔터를 누르면 키보드 숨기기
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

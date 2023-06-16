@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class QuestionActivity extends AppCompatActivity {
     private static int questionFileId;
     private static final String TAG = "QuestionActivity";
-    private static final long TIME_MS = 120000L; // 제한 시간(ms)
+    private static final long TIME_MS = 180000L; // 제한 시간(ms)
     private static final int MULTIPLEQ_POINT = 10; // 객관식 문제 배점
     private static final int SUBJECTIVEQ_POINT = 30; // 주관식 문제 배점
     private Questions questions;
@@ -75,7 +75,6 @@ public class QuestionActivity extends AppCompatActivity {
                 break;
         }
         // 문제 모음집 읽어오기
-//        String path = getApplicationContext().getFilesDir().getPath() + "/" + questionFileName;
         questions = Questions.readQuizFromFile(getResources(), questionFileId);
 
         subjectiveAnswerText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -108,7 +107,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String text = ((Button)view).getText().toString();
-                Questions.QnA qna = questions.current();
+                Questions.QnA qna = questions.current(); // 현재 문제 객체를 가져옴
                 // 정답인지 확인
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
@@ -124,7 +123,6 @@ public class QuestionActivity extends AppCompatActivity {
                 loadNextQuestion();
             }
         };
-
         choiceButton1.setOnClickListener(choiceButtonListener);
         choiceButton2.setOnClickListener(choiceButtonListener);
         choiceButton3.setOnClickListener(choiceButtonListener);
@@ -135,7 +133,7 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = subjectiveAnswerText.getText().toString();
-                Questions.QnA qna = questions.current();
+                Questions.QnA qna = questions.current(); // 현재 문제 객체를 가져옴
                 // 정답인지 확인
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
@@ -246,19 +244,19 @@ public class QuestionActivity extends AppCompatActivity {
 
     // 주관식 뷰로 변경
     private void changeToSubjectiveQview() {
-        // 현재 뷰가 이미 주관식 뷰라면
+        // 현재 뷰가 이미 주관식 뷰라면 건너뜀
         if (currentView != null && currentView == subjectiveQ) return;
-        questionChildLayout.removeView(multipleChoiceQ);
-        questionChildLayout.addView(subjectiveQ); // 뷰 그룹에 자식 뷰로 삽입
+        questionChildLayout.removeView(multipleChoiceQ); // 객관식 뷰를 제거
+        questionChildLayout.addView(subjectiveQ); // 주관식 뷰를 뷰 그룹에 자식 뷰로 삽입
         currentView = subjectiveQ;
     }
 
     // 객관식 뷰로 변경
     private void changeToMultipleChoiceQview() {
-        // 현재 뷰가 이미 객관식 뷰라면
+        // 현재 뷰가 이미 객관식 뷰라면 건너뜀
         if (currentView != null && currentView == multipleChoiceQ) return;
-        questionChildLayout.removeView(subjectiveQ);
-        questionChildLayout.addView(multipleChoiceQ); // 뷰 그룹에 자식 뷰로 삽입
+        questionChildLayout.removeView(subjectiveQ); // 주관식 뷰를 제거
+        questionChildLayout.addView(multipleChoiceQ); // 객관식 뷰를 뷰 그룹에 자식 뷰로 삽입
         currentView = multipleChoiceQ;
     }
 }

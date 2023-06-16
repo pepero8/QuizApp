@@ -55,6 +55,14 @@ public class Player implements Comparable<Player> {
         return name + "   " + score;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public long getScore() {
+        return score;
+    }
+
     @Override
     public int compareTo(Player player) {
         return (int) (player.score - score);
