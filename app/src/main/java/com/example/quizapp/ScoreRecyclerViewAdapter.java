@@ -17,14 +17,6 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
 
     public ScoreRecyclerViewAdapter(List<Player> players) {
         this.players = players;
-//        players = new ArrayList<>(scoresMap.size());
-//
-////        HashMap.Entry<String, Integer>[] scoresSet = new HashMap.Entry<>[scoresMap.size()];
-////        scoresSet = scoresMap.entrySet().toArray(scoresSet);
-//        for (Map.Entry<String, Integer> entry : scoresMap.entrySet()) {
-//            Player player = new Player(entry.getKey(), entry.getValue());
-//            players.add(player);
-//        }
     }
 
     @NonNull
@@ -36,23 +28,22 @@ public class ScoreRecyclerViewAdapter extends RecyclerView.Adapter<ScoreRecycler
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.player = players.get(position);
-//        holder.detailsView.setText(players.get(position).toString());
-        holder.detailsView.setText(players.get(position).getName());
-        holder.scoreView.setText(String.valueOf(players.get(position).getScore()));
+        holder.player = players.get(position); // 등수
+        holder.detailsView.setText(players.get(position).getName()); // 닉네임 표시
+        holder.scoreView.setText(String.valueOf(players.get(position).getScore())); // 점수 표시
         if (position == 0) {
-            holder.detailsView.setTextColor(0xFFFFF064);
+            holder.detailsView.setTextColor(0xFFFFF064); // 1위면 텍스트를 노란색으로 변경
         }
         else if (position == 1) {
-            holder.detailsView.setTextColor(0xFFC12DFF);
+            holder.detailsView.setTextColor(0xFFC12DFF); // 2위면 텍스트를 보라색으로 변경
         }
         else if (position == 2) {
-            holder.detailsView.setTextColor(0xFF0064FF);
+            holder.detailsView.setTextColor(0xFF0064FF); // 3위면 텍스트를 파란색으로 변경
         }
         else {
-            holder.detailsView.setTextColor(0xFFdcdcdc);
+            holder.detailsView.setTextColor(0xFFdcdcdc); // 나머지 순위는 텍스트를 하얀색으로 변경
         }
-        holder.rankNumberView.setText(String.valueOf(position + 1));
+        holder.rankNumberView.setText(String.valueOf(position + 1)); // 등수 표시
     }
 
     @Override

@@ -48,8 +48,6 @@ public class ScoreListFragment extends Fragment {
     }
 
     public void setScores(List<Player> players) {
-        Log.d("SHIT", "" + players.size());
-
         scoresList.clear();
         scoreAdapter.notifyDataSetChanged();
 
@@ -60,26 +58,5 @@ public class ScoreListFragment extends Fragment {
             scoresList.add(i, players.get(i));
             scoreAdapter.notifyItemInserted(i);
         }
-
-//        for (int i = 0; i < scoresList.size(); i++) {
-//            scoresList.remove(i);
-//            scoreAdapter.notifyItemRemoved(i);
-//        }
-//
-//        Collections.sort(players);
-//
-//        for (int i = 0; i < players.size(); i++) {
-//            if (i >= LIMIT) break;
-//            scoresList.add(i, players.get(i));
-//            scoreAdapter.notifyItemChanged(i);
-//        }
-
-
-//        for (Player player : players) {
-//            if (!scoresList.contains(player)) {
-//                scoresList.add(player);
-//                scoreAdapter.notifyItemInserted(scoresList.indexOf(player));
-//            }
-//        }
     }
 }

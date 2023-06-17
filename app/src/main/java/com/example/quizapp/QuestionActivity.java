@@ -138,13 +138,11 @@ public class QuestionActivity extends AppCompatActivity {
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
-//                    subjectiveAnswerText.setText("정답입니다!");
                     correctCount++;
                     score += SUBJECTIVEQ_POINT;
                 }
                 else {
                     Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
-//                    subjectiveAnswerText.setText("오답입니다");
                 }
 
                 // 다음 문제 로드
@@ -160,12 +158,12 @@ public class QuestionActivity extends AppCompatActivity {
         timer = new CountDownTimer(TIME_MS, 100) {
             @Override
             public void onTick(long l) {
-                textViewTime.setText(hmsTimeFormatter(l));
+                textViewTime.setText(hmsTimeFormatter(l)); // 밀리초를 MM:SS 형식으로 변환
                 if (l <= 10000) { // 10초 남았을 경우 빨간색으로 변경
                     textViewTime.setTextColor(getResources().getColor(R.color.red));
                 }
                 int current = progressBar.getProgress() - 100;
-                progressBar.setProgress(current);
+                progressBar.setProgress(current); // progress bar 감소
             }
 
             @Override
@@ -178,7 +176,6 @@ public class QuestionActivity extends AppCompatActivity {
                 myIntent.putExtra("size", questions.size());
                 myIntent.putExtra("topic", topic);
                 startActivity(myIntent);
-                Toast.makeText(QuestionActivity.this, "총 맞춘 개수: " + correctCount, Toast.LENGTH_SHORT).show();
                 finish();
             }
         };
@@ -197,7 +194,6 @@ public class QuestionActivity extends AppCompatActivity {
         questionChildLayout = findViewById(R.id.questionChildLayout);
         subjectiveQ = getLayoutInflater().inflate(R.layout.subjective_question, questionChildLayout, false);
         multipleChoiceQ = getLayoutInflater().inflate(R.layout.multiplechoice_question, questionChildLayout, false);
-//        questionChildLayout.addView(subjectiveQ);
 
         title = findViewById(R.id.question_title);
         subjectiveQuestionText = subjectiveQ.findViewById(R.id.textViewQuestion);
@@ -212,7 +208,7 @@ public class QuestionActivity extends AppCompatActivity {
         textViewTime = findViewById(R.id.textViewTime);
     }
 
-    // 밀리초를 HH:MM:SS 형식으로 변환
+    // 밀리초를 MM:SS 형식으로 변환
     private static String hmsTimeFormatter(long l) {
         return String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(l) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(l)),

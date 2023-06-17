@@ -20,13 +20,7 @@ import java.util.Map;
 public class ShowRankingActivity extends AppCompatActivity {
     private static final String TAG_LIST_FRAGMENT = "TAG_LIST_FRAGMENT";
     ScoreListFragment scoreListFragment;
-
-//    private List<Button> topicButtonList;
-    Button topic1RankingButton;
-    Button topic2RankingButton;
-    Button topic3RankingButton;
-    Button topic4RankingButton;
-
+    Button topic1RankingButton, topic2RankingButton, topic3RankingButton, topic4RankingButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,11 +39,11 @@ public class ShowRankingActivity extends AppCompatActivity {
         topic3RankingButton = findViewById(R.id.topic3_ranking);
         topic4RankingButton = findViewById(R.id.topic4_ranking);
         ImageView closeButton = findViewById(R.id.close_ranking);
-//        topicButtonList = Arrays.asList(topic1RankingButton, topic2RankingButton, topic3RankingButton, topic4RankingButton);
 
         FragmentManager fm = getSupportFragmentManager();
 
         if (savedInstanceState == null) {
+            // 랭킹 프레임 추가
             FragmentTransaction ft = fm.beginTransaction();
             scoreListFragment = new ScoreListFragment();
             ft.add(R.id.ranking_frame, scoreListFragment, TAG_LIST_FRAGMENT);
@@ -62,31 +56,24 @@ public class ShowRankingActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                setColor(view);
-
                 String topic = ((Button)view).getText().toString();
+                // 데이터베이스에 특정 주제의 점수 리스트를 요청
                 DataBase.getScores(new DataBase.Callback() {
                     @Override
                     public void onDataReceived(HashMap<String, Long> players) {
                         List<Player> playersList = new ArrayList<>(players.size());
+                        // players 맵 객체로부터 정보를 추출하여 players 객체들을 생성하고 playersList에 추가
                         for (Map.Entry<String, Long> entry : players.entrySet()) {
                             String name = entry.getKey();
                             Long score = entry.getValue();
                             Player player = new Player(name, score);
-//                    for (Map.Entry<String, Long> scores : score.entrySet()) {
-//                        player.setScore(scores.getKey(), scores.getValue());
-//                    }
                             playersList.add(player);
                         }
-
-                        Log.d("FUCK", "size: " + playersList.size());
-
                         scoreListFragment.setScores(playersList);
                     }
                 }, topic);
             }
         };
-
         topic1RankingButton.setOnClickListener(listener);
         topic2RankingButton.setOnClickListener(listener);
         topic3RankingButton.setOnClickListener(listener);
