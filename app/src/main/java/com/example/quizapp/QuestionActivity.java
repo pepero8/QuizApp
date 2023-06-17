@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -64,14 +66,14 @@ public class QuestionActivity extends AppCompatActivity {
             case "역사":
                 questionFileId = R.raw.questions_1;
                 break;
-            case "인물":
-                questionFileId = R.raw.questions2;
+            case "넌센스":
+                questionFileId = R.raw.questions_2;
                 break;
             case "과학":
                 questionFileId = R.raw.questions_3;
                 break;
             case "외대":
-                questionFileId = R.raw.questions4;
+                questionFileId = R.raw.questions_4;
                 break;
         }
         // 문제 모음집 읽어오기
@@ -112,6 +114,7 @@ public class QuestionActivity extends AppCompatActivity {
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
+                    qna.correct();
                     correctCount++;
                     score += MULTIPLEQ_POINT;
                 }
@@ -119,8 +122,20 @@ public class QuestionActivity extends AppCompatActivity {
                     Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
                 }
 
-                // 다음 문제 로드
-                loadNextQuestion();
+                // 지금까지 못맞춘 문제가 있다면 다음 문제 로드
+                if (correctCount < questions.size())
+                    loadNextQuestion();
+                // 모든 문제의 정답을 맞췄을 경우 점수화면으로 넘어감
+                else {
+                    Intent myIntent = new Intent(QuestionActivity.this, ShowScoreActivity.class);
+                    myIntent.putExtra("playername", playername);
+                    myIntent.putExtra("count", correctCount);
+                    myIntent.putExtra("score", score);
+                    myIntent.putExtra("size", questions.size());
+                    myIntent.putExtra("topic", topic);
+                    startActivity(myIntent);
+                    finish();
+                }
             }
         };
         choiceButton1.setOnClickListener(choiceButtonListener);
@@ -138,6 +153,7 @@ public class QuestionActivity extends AppCompatActivity {
                 if (text.equals(qna.getAnswer())) {
                     Log.d(TAG, "correct");
                     Toast.makeText(QuestionActivity.this, "정답입니다!", Toast.LENGTH_SHORT).show();
+                    qna.correct();
                     correctCount++;
                     score += SUBJECTIVEQ_POINT;
                 }
@@ -145,8 +161,20 @@ public class QuestionActivity extends AppCompatActivity {
                     Toast.makeText(QuestionActivity.this, "오답입니다", Toast.LENGTH_SHORT).show();
                 }
 
-                // 다음 문제 로드
-                loadNextQuestion();
+                // 지금까지 못맞춘 문제가 있다면 다음 문제 로드
+                if (correctCount < questions.size())
+                    loadNextQuestion();
+                // 모든 문제의 정답을 맞췄을 경우 점수화면으로 넘어감
+                else {
+                    Intent myIntent = new Intent(QuestionActivity.this, ShowScoreActivity.class);
+                    myIntent.putExtra("playername", playername);
+                    myIntent.putExtra("count", correctCount);
+                    myIntent.putExtra("score", score);
+                    myIntent.putExtra("size", questions.size());
+                    myIntent.putExtra("topic", topic);
+                    startActivity(myIntent);
+                    finish();
+                }
             }
         });
 
@@ -216,13 +244,17 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     public void loadNextQuestion() {
-        Questions.QnA nextQnA = questions.next();
+        Questions.QnA nextQnA;
+        while ((nextQnA = questions.next()).correct); // 지금까지 못 푼 문제를 반환
+//        Questions.QnA nextQnA = questions.next();
+
         // 다음 문제가 객관식이라면
         if (nextQnA instanceof Questions.MultipleChoiceQnA) {
             changeToMultipleChoiceQview();
 
             multipleChoiceQuestionText.setText("Q. " + nextQnA.getQuestion());
             String[] choices = ((Questions.MultipleChoiceQnA) nextQnA).getChoices();
+            Log.d("Questions", Arrays.toString(choices));
             choiceButton1.setText(choices[0]);
             choiceButton2.setText(choices[1]);
             choiceButton3.setText(choices[2]);

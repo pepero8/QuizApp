@@ -18,6 +18,7 @@ public class Questions {
     static abstract class QnA {
         protected String question;
         protected String answer;
+        protected boolean correct;
         String getQuestion() {
             return question;
         }
@@ -25,6 +26,7 @@ public class Questions {
         String getAnswer() {
             return answer;
         }
+        void correct() { correct = true; }
     }
 
     // 객관식 문제 클래스
@@ -141,8 +143,12 @@ public class Questions {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] splitted = line.split("-");
-                qmap.put(splitted[0], splitted[1]);
+                int delimIdx = line.indexOf('-');
+                String q = line.substring(0, delimIdx);
+                String ans = line.substring(delimIdx + 1);
+//                String[] splitted = line.split("-");
+//                qmap.put(splitted[0], splitted[1]);
+                qmap.put(q, ans);
             }
 
             is.close();

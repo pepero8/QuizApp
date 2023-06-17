@@ -43,7 +43,7 @@
         android:id="@+id/topic2_ranking"
         android:layout_width="60sp"
         android:layout_height="48sp"
-        android:text="인물"
+        android:text="넌센스"
         android:translationX="80sp"
         android:translationY="80sp"
         android:background="@drawable/button"/>
